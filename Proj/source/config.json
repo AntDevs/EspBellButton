@@ -1,0 +1,12 @@
+{
+    "wifi": {
+        "ssid": "YOUR_WIFI_SSID",
+        "password": "YOUR_WIFI_PASSWORD"
+    },
+    "api": {
+        "url": "http://192.168.1.100:8080/trigger"
+    },
+    "hardware": {
+        "button_pin": 13
+    }
+}
