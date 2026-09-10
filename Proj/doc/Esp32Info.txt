@@ -1,0 +1,112 @@
+mpremote connect /dev/ttyUSB0 repl
+
+https://micropython.org/download/ESP32_GENERIC/
+ESP32_GENERIC-20240602-v1.23.0.bin
+
+
+
+// =====================================================================================//
+// ============================ Start Update files on  flash mem  ======================//
+// =====================================================================================//
+
+mpremote connect /dev/ttyUSB0 fs mkdir lib
+
+cd /media/topasta/Dev/git/EspBellButton/Proj
+mpremote connect /dev/ttyUSB0 fs cp lib/logging.py :lib/logging.py
+
+mpremote connect /dev/ttyUSB0 cp -r source/. : && mpremote connect /dev/ttyUSB0 soft-reset
+
+
+// list files on ESP 
+// ****************//
+mpremote connect /dev/ttyUSB0 ls
+mpremote connect /dev/ttyUSB0 ls /lib
+
+// view files on ESP 
+// ****************//
+mpremote connect /dev/ttyUSB0 cat boot.py
+mpremote connect /dev/ttyUSB0 cat config.json
+
+// check free disk space
+mpremote exec "import os; s=os.statvfs('/'); print(f'Свободно: {s[0]*s[4]/1024/1024:.2f} MB из {s[0]*s[2]/1024/1024:.2f} MB')"
+
+// Syncronze one file from current filder to ESP32 flash disk
+// *******************************************************************************//
+mpremote connect /dev/ttyUSB0 cp main.py :main.py
+
+// Syncronze one file from ESP32 flash disk to current filder
+// *******************************************************************************//
+mpremote connect /dev/ttyUSB0 cp -r :boot.log boot.log
+mpremote connect /dev/ttyUSB0 cp -r :config.json config.json
+// Syncronze all files from current filder and sub folders to ESP32 flash disk
+// *******************************************************************************//
+mpremote connect /dev/ttyUSB0 cp -r . : && mpremote connect /dev/ttyUSB0 soft-reset
+
+
+// backup all files from ESP32 flash disk to current filder 
+// *******************************************************************************//
+mpremote cp -r :. ./backup/
+
+/************** delete file from ESP32 *******************/
+// *******************************************************************************//
+mpremote connect /dev/ttyUSB0 ls
+mpremote connect /dev/ttyUSB0 rm :webrepl_cfg.py
+
+mpremote connect /dev/ttyUSB0 rm :/lib/microdot.py
+
+
+// ####################################################################################//
+// ############################# END Update files on  flash mem #######################//
+// ####################################################################################//
+
+// =====================================================================================//
+// =============================        Start ESP-WROOM-32 Utils   ============================//
+// =====================================================================================//
+
+import encrypt
+encrypt.main("MySecretWiFiPassword123")
+
+
+// выведет точную модель чипа
+esptool.py --port /dev/ttyUSB0 flash_id
+
+picocom /dev/ttyUSB0 -b 115200
+
+mpremote connect /dev/ttyUSB0 repl
+
+mpremote soft-reset
+
+// full ESP32 board spec
+esptool.py --port /dev/ttyUSB0 flash_id
+
+// to linux cli
+rshell -p /dev/ttyUSB0
+ls /pyboard
+
+mpremote cp -r :. ./backup/
+
+// ####################################################################################//
+// #############################        End Start ESP-WROOM-32 Utils   #######################//
+// ####################################################################################//
+
+
+// =====================================================================================//
+// ==============================   Update Start firmware    ===========================//
+// =====================================================================================//
+
+https://micropython.org/download/ESP32_GENERIC
+
+// Очистите память микроконтроллера
+// ****************//
+esptool.py --port /dev/ttyUSB0 erase_flash
+
+
+// set new firmware
+// ****************//
+cd /media/topasta/Dev/ESP-WROOM-32/firmware/ESP32_GENERIC-20260824-v1.29.0.bin
+esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 ESP32_GENERIC-20260824-v1.29.0.bin
+
+// ####################################################################################//
+// ##################################  End Update firmware  ###########################//
+// ####################################################################################//
+
