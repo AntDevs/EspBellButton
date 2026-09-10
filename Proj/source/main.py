@@ -152,6 +152,54 @@ def call_rest_api(api_url):
                 logger.error("Ошибка при закрытии соединения: %s", close_err)
     logger.debug("Выход из функции call_rest_api")
 
+def call_local_https_api(api_url):
+    logger.debug("Вход в функцию call_local_https_api [url=%s]", api_url)
+    try:
+        if not api_url.startswith("https://"):
+            logger.error("Поддерживаются только HTTPS URL")
+            call_rest_api(api_url)  # fallback to regular REST API call
+            return
+            
+        # Парсинг хоста и пути из URL
+        path_idx = api_url.find("/", 8)
+        if path_idx == -1:
+            host = api_url[8:]
+            path = "/"
+        else:
+            host = api_url[8:path_idx]
+            path = api_url[path_idx:]
+            
+        port = 443
+        if ":" in host:
+            host, port_str = host.split(":")
+            port = int(port_str)
+
+        logger.info("Получение сетевых адресов для хоста: %s:%d", host, port)
+        addr_info = socket.getaddrinfo(host, port)[0][-1]
+
+        logger.info("Установка соединения и обертывание в SSL-сокет...")
+        s = socket.socket()
+        s.connect(addr_info)
+        
+        # Создаем защищенное соединение без проверки подлинности сертификата
+        s = ssl.wrap_socket(s, cert_reqs=ssl.CERT_NONE, server_hostname=host)
+        
+        # Формирование и отправка HTTP-запроса
+        request = f"GET {path} HTTP/1.0\r\nHost: {host}\r\nConnection: close\r\n\r\n"
+        s.write(request.encode('utf-8'))
+
+        response = s.read()
+        s.close()
+        
+        logger.info("HTTPS-запрос успешно выполнен")
+        logger.debug("Ответ сервера: %s", response.decode('utf-8', errors='ignore'))
+        
+    except Exception as e:
+    # Исключение автоматически обрабатывается логгером
+        logger.exception("Ошибка при выполнении защищенного запроса: %s", e)
+    finally:
+        logger.debug("Выход из функции call_local_https_api")
+
 def main():
     logger.debug("Вход в функцию main")
     try:
@@ -205,7 +253,7 @@ def main():
                     current_time = time.ticks_ms()
                     if time.ticks_diff(current_time, last_press_time) > debounce_delay:
                         logger.info(">>> Кнопка нажата, запуск REST API")
-                        call_rest_api(api_url)
+                        call_local_https_api(api_url)
                         last_press_time = time.ticks_ms()
                 time.sleep(0.05)
             except Exception as e:
