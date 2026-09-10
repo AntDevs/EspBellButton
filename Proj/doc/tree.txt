@@ -1,0 +1,169 @@
+.
+── doc
+│   ├── ChipPin
+│   │   ├── ChipInfo.txt
+│   │   ├── esp32_devkitc.jpg
+│   │   ├── esp32-wroom-32_datasheet_en.pdf
+│   │   ├── ESP-WROOM-32.jpeg
+│   │   └── ESP-WROOM-32-Pinout.jpeg
+│   ├── Esp32Info.txt
+│   ├── fileList.txt
+│   ├── InfoList.txt
+│   ├── microdot-2.6.2
+│   │   ├── docs
+│   │   │   ├── api
+│   │   │   │   ├── asgi.rst
+│   │   │   │   ├── auth.rst
+│   │   │   │   ├── cors.rst
+│   │   │   │   ├── csrf.rst
+│   │   │   │   ├── index.rst
+│   │   │   │   ├── jinja.rst
+│   │   │   │   ├── login.rst
+│   │   │   │   ├── microdot.rst
+│   │   │   │   ├── multipart.rst
+│   │   │   │   ├── sessions.rst
+│   │   │   │   ├── sse.rst
+│   │   │   │   ├── test_client.rst
+│   │   │   │   ├── utemplate.rst
+│   │   │   │   ├── websocket.rst
+│   │   │   │   └── wsgi.rst
+│   │   │   ├── conf.py
+│   │   │   ├── extensions
+│   │   │   │   ├── auth.rst
+│   │   │   │   ├── cors.rst
+│   │   │   │   ├── csrf.rst
+│   │   │   │   ├── index.rst
+│   │   │   │   ├── login.rst
+│   │   │   │   ├── multipart.rst
+│   │   │   │   ├── production.rst
+│   │   │   │   ├── sessions.rst
+│   │   │   │   ├── sse.rst
+│   │   │   │   ├── templates.rst
+│   │   │   │   ├── test_client.rst
+│   │   │   │   └── websocket.rst
+│   │   │   ├── implementation
+│   │   │   │   ├── freezing.rst
+│   │   │   │   ├── index.rst
+│   │   │   │   └── migrating.rst
+│   │   │   ├── index.rst
+│   │   │   ├── intro.rst
+│   │   │   ├── make.bat
+│   │   │   ├── Makefile
+│   │   │   ├── _static
+│   │   │   │   └── css
+│   │   │   │       └── custom.css
+│   │   │   └── users-guide
+│   │   │       ├── concurrency.rst
+│   │   │       ├── defining-routes.rst
+│   │   │       ├── index.rst
+│   │   │       ├── intro.rst
+│   │   │       ├── request-object.rst
+│   │   │       └── responses.rst
+│   │   ├── LICENSE
+│   │   ├── MANIFEST.in
+│   │   ├── PKG-INFO
+│   │   ├── pyproject.toml
+│   │   ├── README.md
+│   │   ├── setup.cfg
+│   │   ├── src
+│   │   │   └── microdot.egg-info
+│   │   │       ├── dependency_links.txt
+│   │   │       ├── not-zip-safe
+│   │   │       ├── PKG-INFO
+│   │   │       ├── requires.txt
+│   │   │       ├── SOURCES.txt
+│   │   │       └── top_level.txt
+│   │   ├── tests
+│   │   │   ├── files
+│   │   │   │   ├── test.bin
+│   │   │   │   ├── test.css
+│   │   │   │   ├── test.gif
+│   │   │   │   ├── test.gz
+│   │   │   │   ├── test.html
+│   │   │   │   ├── test.jpg
+│   │   │   │   ├── test.js
+│   │   │   │   ├── test.json
+│   │   │   │   ├── test.png
+│   │   │   │   ├── test.txt
+│   │   │   │   └── test.txt.gz
+│   │   │   ├── __init__.py
+│   │   │   ├── mock_socket.py
+│   │   │   ├── templates
+│   │   │   │   ├── hello.jinja.txt
+│   │   │   │   ├── hello.utemplate.txt
+│   │   │   │   └── hello_utemplate_txt.py
+│   │   │   ├── test_asgi.py
+│   │   │   ├── test_auth.py
+│   │   │   ├── test_cors.py
+│   │   │   ├── test_csrf.py
+│   │   │   ├── test_end2end.py
+│   │   │   ├── test_jinja.py
+│   │   │   ├── test_login.py
+│   │   │   ├── test_microdot.py
+│   │   │   ├── test_multidict.py
+│   │   │   ├── test_multipart.py
+│   │   │   ├── test_request.py
+│   │   │   ├── test_response.py
+│   │   │   ├── test_session.py
+│   │   │   ├── test_sse.py
+│   │   │   ├── test_urlencode.py
+│   │   │   ├── test_url_pattern.py
+│   │   │   ├── test_utemplate.py
+│   │   │   ├── test_websocket.py
+│   │   │   └── test_wsgi.py
+│   │   └── tox.ini
+│   ├── ProjDesc.html
+│   ├── ProjDesc.pdf
+│   └── tree.txt
+├── lib
+│   ├── logging.py
+│   └── microdot
+│       ├── asgi.py
+│       ├── asgi.pyi
+│       ├── auth.py
+│       ├── auth.pyi
+│       ├── cors.py
+│       ├── cors.pyi
+│       ├── csrf.py
+│       ├── csrf.pyi
+│       ├── helpers.py
+│       ├── helpers.pyi
+│       ├── __init__.py
+│       ├── __init__.pyi
+│       ├── jinja.py
+│       ├── jinja.pyi
+│       ├── login.py
+│       ├── login.pyi
+│       ├── microdot.py
+│       ├── microdot.pyi
+│       ├── multipart.py
+│       ├── multipart.pyi
+│       ├── py.typed
+│       ├── session.py
+│       ├── session.pyi
+│       ├── sse.py
+│       ├── sse.pyi
+│       ├── test_client.py
+│       ├── test_client.pyi
+│       ├── utemplate.py
+│       ├── utemplate.pyi
+│       ├── websocket.py
+│       ├── websocket.pyi
+│       ├── wsgi.py
+│       └── wsgi.pyi
+└── source
+    ├── config.json
+    └── main.py
+
+
+
+
+
+*********************************
+to flash
+
+├── lib
+│   ├── logging.py
+└── source
+    ├── config.json
+    └── main.py
