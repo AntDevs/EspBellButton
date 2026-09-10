@@ -1,1 +1,2 @@
 https://micropython.org/download/ESP32_GENERIC/
+https://www.xecor.com/blog/esp32-pinout-diagram

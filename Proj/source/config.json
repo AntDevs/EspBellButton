@@ -1,6 +1,14 @@
 {
-    "wifi_ssid": "MyHome_555",
-    "wifi_password_enc": "gY1FknfreQo6M2aYmLCkQg==",
+    "wifi_networks": [
+        {
+            "ssid": "MyHome_555",
+            "password_enc": "gY1FknfreQo6M2aYmLCkQg=="
+        },
+        {
+            "ssid": "MyHomeMain",
+            "password_enc": "gY1FknfreQo6M2aYmLCkQg=="
+        }
+    ],    
     "api_url": "http://192.168.1.100:8080/trigger",
     "hardware_button_pin": 13
 }
